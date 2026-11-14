@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found · Yasmine Benzayed</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#05090b">
+  <!-- self-contained: GitHub Pages serves this file at any missing address, so nothing here uses a relative path -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2305090b'/%3E%3Cpath d='M10 3c0 7 12 7 12 13S10 22 10 29' fill='none' stroke='%234fe3c1' stroke-width='2.6' stroke-linecap='round'/%3E%3Cpath d='M22 3c0 7-12 7-12 13s12 6 12 13' fill='none' stroke='%235aa9ff' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..600&family=Geist+Mono:wght@400..600&display=swap">
+  <style>
+    :root { --bg: #05090b; --ink: #eaf4f1; --ink-2: #bccdc8; --muted: #8aa29c; --a: #4fe3c1; --c: #ff7a66; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Geist", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    main { min-height: 100vh; min-height: 100svh; display: grid; place-items: center; text-align: center; padding: 40px 20px; }
+    .seq { margin: 0; font-family: "Geist Mono", ui-monospace, monospace; font-size: 14px; color: var(--muted); letter-spacing: 0.08em; }
+    .seq b { color: var(--c); font-weight: 600; }
+    h1 { margin: 18px 0 14px; font-size: clamp(40px, 6vw, 72px); line-height: 1; letter-spacing: -0.04em; font-weight: 600; }
+    p.lead { color: var(--ink-2); max-width: 44ch; margin: 0 auto 28px; line-height: 1.6; }
+    a.btn {
+      display: inline-flex; align-items: center; height: 52px; padding: 0 24px; border-radius: 999px;
+      background: var(--a); color: #03120e; font-weight: 600; text-decoration: none;
+      transition: transform 0.18s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    a.btn:hover { transform: translateY(-2px); }
+    a.btn:active { transform: scale(0.97); }
+    a.btn:focus-visible { outline: 2px solid #ffb547; outline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <main>
+    <div>
+      <p class="seq">5′-ATG GCC <b>TAA</b>-3′</p>
+      <h1>This page is a stop codon.</h1>
+      <p class="lead">The address does not match any page on this site. The portfolio, research and contact details are on the home page.</p>
+      <a class="btn" id="home" href="/">Open the home page</a>
+    </div>
+  </main>
+  <script>
+    // On a GitHub project site (user.github.io/repo/) the home page is /repo/, not /.
+    // Check whether the first path segment is the site's home before linking to it.
+    (function () {
+      var seg = location.pathname.split('/').filter(Boolean)[0];
+      if (!seg || seg.indexOf('.') > -1 || !window.fetch) return;
+      fetch('/' + seg + '/', { method: 'HEAD' }).then(function (r) {
+        if (r.ok) document.getElementById('home').setAttribute('href', '/' + seg + '/');
+      }).catch(function () {});
+    })();
+  </script>
+</body>
+</html>

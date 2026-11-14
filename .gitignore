@@ -1,0 +1,16 @@
+# The client's private documents and original photo. Never publish these.
+Client Data/
+
+# Local tooling
+.taste-skill/
+shots/
+.claude/
+node_modules/
+.DS_Store
+Thumbs.db
+
+# Marketing video, covers and the scripts that make them: kept locally, not part of the website
+video/
+
+# Local code graph (graphify)
+graphify-out/

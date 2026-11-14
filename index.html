@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="en" data-type="service">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Yasmine Benzayed · Bioinformatics and genetics analysis</title>
+  <meta name="description" content="Yasmine Benzayed, bioinformatician and geneticist (Master in Genetics, Saad Dahlab University Blida 1). Phylogenetic analysis, haplotypes, epitope prediction and scientific writing for researchers and students.">
+  <meta name="author" content="Yasmine Benzayed">
+  <meta name="theme-color" content="#05090b">
+  <meta name="color-scheme" content="dark">
+  <meta name="page-type" content="service">
+  <meta name="site-kind" content="other">
+
+  <meta property="og:type" content="profile">
+  <meta property="og:site_name" content="Yasmine Benzayed">
+  <meta property="og:title" content="Yasmine Benzayed · Bioinformatics and genetics analysis">
+  <meta property="og:description" content="Phylogenetic trees, haplotypes, epitope prediction and research writing for genetics projects. Master in Genetics, co-author in Genetics and Biodiversity Journal (2022).">
+  <meta property="og:image" content="assets/share.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&family=Instrument+Serif:ital@0;1&display=swap">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <script>
+    // before paint: remember a paused-motion choice, flag JS
+    (function () {
+      var d = document.documentElement;
+      d.classList.add('js');
+      var paused = false;
+      try { paused = localStorage.getItem('yb-motion') === 'paused'; if (paused) d.classList.add('motion-paused'); } catch (e) {}
+      // the sequencing intro plays once per visit
+      var seen = false;
+      try { seen = sessionStorage.getItem('yb-intro') === '1'; } catch (e) {}
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!seen && !reduce && !paused) d.classList.add('is-loading');
+    })();
+  </script>
+  <script type="importmap">
+    { "imports": { "three": "./assets/vendor/three.module.min.js", "three/addons/": "./assets/vendor/addons/" } }
+  </script>
+  <script type="module" src="assets/js/helix.js"></script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/fx.js" defer></script>
+  <script src="assets/js/workflow.js" defer></script>
+  <script src="assets/js/lab.js" defer></script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Yasmine Benzayed",
+    "jobTitle": "Bioinformatician and geneticist",
+    "image": "assets/img/avatar.webp",
+    "email": "mailto:bzdyasmine97@gmail.com",
+    "knowsLanguage": ["en", "fr", "ar"],
+    "knowsAbout": ["Bioinformatics", "Genetics", "Phylogenetics", "Immunoinformatics", "Scientific writing"],
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Saad Dahlab University Blida 1" },
+    "nationality": "Algerian",
+    "sameAs": ["https://www.upwork.com/freelancers/~014ba4ed851fb90341", "https://www.facebook.com/sali.habich"]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <!-- the sequencing intro: reads stream, the name decodes from A, T, G and C, then the screen opens like a strand -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__reads" id="loader-reads"></div>
+    <div class="loader__center">
+      <p class="loader__tag">sequencing</p>
+      <p class="loader__name" id="loader-name">YASMINE BENZAYED</p>
+      <div class="loader__bar"><span id="loader-bar"></span></div>
+      <p class="loader__meta"><span>5′</span><span id="loader-pct">000</span><span>3′</span></p>
+    </div>
+  </div>
+
+  <div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__label" id="cursor-label"></span></div>
+
+  <!-- the helix: WebGL canvas, a veil that dims it per section, the code fragments, and a still fallback -->
+  <div class="stage" aria-hidden="true">
+    <div class="helix-fallback" id="helix-fallback"></div>
+    <canvas id="helix"></canvas>
+    <div class="helix-veil" id="helix-veil"></div>
+    <div class="frags" id="frags"></div>
+    <div class="stage-shade"></div>
+  </div>
+
+  <header class="nav" id="nav">
+    <div class="wrap nav__row">
+      <a class="brand" href="#top" aria-label="Yasmine Benzayed, back to top">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M10 3c0 7 12 7 12 13S10 22 10 29" fill="none" stroke="var(--a)" stroke-width="2.4" stroke-linecap="round"/><path d="M22 3c0 7-12 7-12 13s12 6 12 13" fill="none" stroke="var(--t)" stroke-width="2.4" stroke-linecap="round"/><path d="M12.5 8.5h7M12.5 23.5h7M14 16h4" stroke="var(--g)" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="brand__name">Yasmine Benzayed</span>
+      </a>
+      <nav class="nav__links" aria-label="Sections">
+        <a href="#services">Services</a>
+        <a href="#workflow">Process</a>
+        <a href="#research">Research</a>
+        <a href="#lab">Lab</a>
+        <a href="#experience">Experience</a>
+        <a href="#letters">Letters</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn btn--primary btn--sm nav__cta" href="mailto:bzdyasmine97@gmail.com?subject=Bioinformatics%20project">Email me</a>
+      <button class="nav__toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open the menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="menu" id="menu" hidden>
+    <nav class="wrap menu__links" aria-label="Menu">
+      <a href="#services"><span>01</span>Services</a>
+      <a href="#workflow"><span>02</span>Process</a>
+      <a href="#research"><span>03</span>Research</a>
+      <a href="#lab"><span>04</span>Sequence lab</a>
+      <a href="#toolkit"><span>05</span>Toolkit</a>
+      <a href="#experience"><span>06</span>Experience</a>
+      <a href="#letters"><span>07</span>Letters</a>
+      <a href="#contact"><span>08</span>Contact</a>
+      <a class="btn btn--primary menu__cta" href="mailto:bzdyasmine97@gmail.com?subject=Bioinformatics%20project">Email me</a>
+    </nav>
+  </div>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="top" data-helix="hero" data-enter>
+      <!-- the portrait stands in front of the helix; its lower edge melts into the page -->
+      <figure class="hero__portrait m-enter" style="--i:2">
+        <img src="assets/img/portrait.webp" srcset="assets/img/portrait-560.webp 560w, assets/img/portrait.webp 900w" sizes="(max-width: 899px) 78vw, 640px" width="900" height="1029" alt="Yasmine Benzayed" fetchpriority="high">
+      </figure>
+      <div class="wrap hero__grid">
+        <div class="hero__copy">
+          <p class="kicker m-enter" style="--i:0"><span class="kicker__pulse"></span><span class="sr-only">Bioinformatics, genetics and research writing</span><span class="kicker__prompt" aria-hidden="true">~/yasmine $</span><span class="typer" id="typer" aria-hidden="true" data-words='["mega align spike.fasta","dnasp haplotypes.nex","netMHCpan -a HLA-A02:01 E6.fsa","blastp -query E6.fasta","beast spike_dated.xml","format thesis.docx --style apa"]'>mega align spike.fasta</span><span class="caret" aria-hidden="true"></span></p>
+          <h1 class="m-enter" style="--i:1">
+            <span class="h1__name">Yasmine <em>Benzayed</em></span>
+            <span class="h1__role">Bioinformatics and genetics analysis for researchers and students</span>
+          </h1>
+          <p class="lead m-enter" style="--i:2">I take DNA, RNA and protein sequences from GenBank or your lab and return alignments, phylogenetic trees and epitope predictions, with a written interpretation checked against the PubMed literature.</p>
+          <div class="actions m-enter" style="--i:3">
+            <a class="btn btn--primary" href="mailto:bzdyasmine97@gmail.com?subject=Bioinformatics%20project">
+              <img src="assets/icons/ui-mail.svg" alt="" width="18" height="18" class="ic-inline ic-dark">Email me
+            </a>
+            <a class="btn btn--ghost" href="#research">See the research</a>
+          </div>
+          <ul class="facts m-enter" style="--i:4" aria-label="Key facts">
+            <li><span class="facts__k">Master</span>Genetics, Saad Dahlab University Blida 1</li>
+            <li><span class="facts__k"><span data-count="18.5" data-dec="1">18.5</span>/20</span>Thesis grade, with the jury's congratulations</li>
+            <li><span class="facts__k"><span data-count="2022" data-from="2016">2022</span></span>Co-author, Genetics and Biodiversity Journal</li>
+          </ul>
+        </div>
+      </div>
+      <p class="hero__hint m-enter" style="--i:7" aria-hidden="true"><span class="hero__hint-dot"></span>Move across the DNA to unzip it. Click it to break it apart.</p>
+      <a class="scroll-cue m-enter" style="--i:6" href="#services" aria-label="Go to services">
+        <span class="scroll-cue__label">5′</span>
+        <span class="scroll-cue__line"></span>
+        <span class="scroll-cue__label">3′</span>
+      </a>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee__band marquee__band--a">
+        <div class="marquee__track">
+          <span>Phylogenetics</span><i>✦</i><span class="o">Haplotype networks</span><i>✦</i><span>Epitope prediction</span><i>✦</i><span class="o">Immunoinformatics</span><i>✦</i><span>Scientific writing</span><i>✦</i><span class="o">Genetics teaching</span><i>✦</i>
+          <span>Phylogenetics</span><i>✦</i><span class="o">Haplotype networks</span><i>✦</i><span>Epitope prediction</span><i>✦</i><span class="o">Immunoinformatics</span><i>✦</i><span>Scientific writing</span><i>✦</i><span class="o">Genetics teaching</span><i>✦</i>
+        </div>
+      </div>
+      <div class="marquee__band marquee__band--b">
+        <div class="marquee__track marquee__track--rev" id="marquee-seq"></div>
+      </div>
+    </div>
+
+    <!-- ============ SERVICES ============ -->
+    <section class="section" id="services" data-helix="right">
+      <div class="wrap">
+        <div class="split split--left">
+          <header class="section__head">
+            <p class="label"><span class="label__n">01</span>services</p>
+            <h2 data-decode>Analysis services for genetics research.</h2>
+            <p class="section__lead">Each project ends with files you can reuse and a report you can cite: alignments, tree files, figures and the reasoning behind them.</p>
+          </header>
+          <div class="cards">
+            <article class="card">
+              <svg class="card__viz viz-tree" viewBox="0 0 120 64" aria-hidden="true">
+                <path class="viz-line" d="M6 32H26M26 14V50M26 14H54M26 50H44M54 6V22M54 6H112M54 22H96M44 40V60M44 40H104M44 60H86"/>
+                <circle class="viz-node" cx="112" cy="6" r="3.2" style="--k:var(--a)"/><circle class="viz-node" cx="96" cy="22" r="3.2" style="--k:var(--t)"/><circle class="viz-node" cx="104" cy="40" r="3.2" style="--k:var(--g)"/><circle class="viz-node" cx="86" cy="60" r="3.2" style="--k:var(--c)"/>
+                <path class="viz-pulse" d="M6 32H26V14H54V6H112"/>
+              </svg>
+              <h3>Builds phylogenetic trees</h3>
+              <p>Alignment, model choice and tree building in MEGA or BEAST, delivered with FASTA and tree files ready for FigTree.</p>
+            </article>
+            <article class="card">
+              <svg class="card__viz viz-net" viewBox="0 0 120 64" aria-hidden="true">
+                <path class="viz-line" d="M60 32L22 14M60 32L24 52M60 32L92 12M60 32L98 50M92 12L112 26"/>
+                <circle class="viz-node" cx="60" cy="32" r="7" style="--k:var(--a)"/><circle class="viz-node" cx="22" cy="14" r="4" style="--k:var(--t)"/><circle class="viz-node" cx="24" cy="52" r="5" style="--k:var(--t)"/><circle class="viz-node" cx="92" cy="12" r="5.5" style="--k:var(--g)"/><circle class="viz-node" cx="98" cy="50" r="3.5" style="--k:var(--c)"/><circle class="viz-node" cx="112" cy="26" r="3" style="--k:var(--g)"/>
+                <path class="viz-pulse" d="M22 14L60 32L92 12L112 26"/>
+              </svg>
+              <h3>Maps haplotypes and diversity</h3>
+              <p>Haplotype identification, molecular statistics and phylogenetic networks with DnaSP, DAMBE and Network.</p>
+            </article>
+            <article class="card">
+              <svg class="card__viz viz-pep" viewBox="0 0 120 64" aria-hidden="true">
+                <rect class="viz-window" x="30" y="20" width="58" height="24" rx="6"/>
+                <g class="viz-beads"><circle cx="8" cy="32" r="4"/><circle cx="20" cy="32" r="4"/><circle cx="32" cy="32" r="4"/><circle cx="44" cy="32" r="4"/><circle cx="56" cy="32" r="4"/><circle cx="68" cy="32" r="4"/><circle cx="80" cy="32" r="4"/><circle cx="92" cy="32" r="4"/><circle cx="104" cy="32" r="4"/><circle cx="116" cy="32" r="4"/></g>
+              </svg>
+              <h3>Predicts epitopes and HLA binding</h3>
+              <p>BLASTp screening against the human proteome, BepiPred epitopes, NetMHCpan binding and IEDB population coverage.</p>
+            </article>
+            <article class="card">
+              <svg class="card__viz viz-lit" viewBox="0 0 120 64" aria-hidden="true">
+                <rect class="viz-doc" x="8" y="6" width="44" height="52" rx="5"/>
+                <path class="viz-line" d="M16 18H44M16 28H40M16 38H44M16 48H32"/>
+                <rect class="viz-doc" x="68" y="6" width="44" height="52" rx="5"/>
+                <path class="viz-line" d="M76 18H104M76 28H100M76 38H104M76 48H92"/>
+                <path class="viz-pulse" d="M52 32H68"/>
+                <path class="viz-check" d="M84 44l5 5 10-12"/>
+              </svg>
+              <h3>Checks results against the literature</h3>
+              <p>Every finding compared with recent peer-reviewed studies from PubMed and reference sequences from NCBI.</p>
+            </article>
+            <article class="card">
+              <svg class="card__viz viz-doc-w" viewBox="0 0 120 64" aria-hidden="true">
+                <rect class="viz-doc" x="34" y="4" width="52" height="56" rx="5"/>
+                <path class="viz-line viz-type" d="M42 16H78M42 25H74M42 34H78M42 43H66M42 52H72"/>
+                <path class="viz-pulse" d="M42 16H78"/>
+              </svg>
+              <h3>Writes and formats research documents</h3>
+              <p>Scientific reports, literature reviews, proofreading, APA formatting and referencing for theses and articles.</p>
+            </article>
+            <article class="card">
+              <svg class="card__viz viz-cell" viewBox="0 0 120 64" aria-hidden="true">
+                <ellipse class="viz-doc" cx="60" cy="32" rx="40" ry="26"/>
+                <circle class="viz-node" cx="58" cy="32" r="11" style="--k:var(--t)"/>
+                <path class="viz-line" d="M52 30c3-4 9-4 12 0M52 35c3 4 9 4 12 0"/>
+                <circle class="viz-node" cx="86" cy="22" r="3" style="--k:var(--g)"/><circle class="viz-node" cx="36" cy="44" r="3" style="--k:var(--a)"/><circle class="viz-node" cx="84" cy="44" r="2.5" style="--k:var(--c)"/>
+              </svg>
+              <h3>Teaches biology and genetics</h3>
+              <p>Natural sciences teaching at secondary school, and clear explanations of genetics and cell biology for students.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WORKFLOW: a sticky window that changes with each step ============ -->
+    <section class="section workflow" id="workflow" data-helix="dim">
+      <div class="wrap">
+        <header class="section__head section__head--wide">
+          <p class="label"><span class="label__n">02</span>process</p>
+          <h2 data-decode>How a sequence becomes a report.</h2>
+          <p class="section__lead">Four steps that every project goes through, from raw sequences to a document you can cite.</p>
+        </header>
+        <div class="wf" id="wf">
+          <div class="wf__stage" aria-hidden="true">
+            <div class="wf__frame">
+              <div class="wf__bar">
+                <span class="dots"><i></i><i></i><i></i></span>
+                <p class="wf__title" id="wf-title">sequences.fasta</p>
+                <p class="wf__step-n" id="wf-n">01 / 04</p>
+              </div>
+              <div class="wf__views">
+                <div class="wf__view is-on" data-view="0"><div class="fasta" id="wf-fasta"></div></div>
+                <div class="wf__view" data-view="1"><div class="aln" id="wf-aln"></div></div>
+                <div class="wf__view" data-view="2"><svg class="wtree" id="wf-tree" viewBox="0 0 440 300" preserveAspectRatio="xMidYMid meet"></svg></div>
+                <div class="wf__view" data-view="3">
+                  <div class="report">
+                    <div class="report__page">
+                      <p class="report__kicker">Report · APA 7th edition</p>
+                      <p class="report__title">Phylogenetic analysis of the spike gene</p>
+                      <div class="report__cols">
+                        <div class="report__text">
+                          <p class="report__h">1 · Methods</p><i style="--w:92%"></i><i style="--w:84%"></i><i style="--w:70%"></i>
+                          <p class="report__h">2 · Results</p><i style="--w:88%"></i><i style="--w:76%"></i>
+                          <p class="report__h">3 · Discussion</p><i style="--w:90%"></i><i style="--w:64%"></i>
+                          <p class="report__h">References</p><i style="--w:80%"></i><i style="--w:72%"></i>
+                        </div>
+                        <svg class="report__fig" viewBox="0 0 120 120"><path d="M8 60H30M30 22V98M30 22H70M30 98H58M70 10V34M70 10H112M70 34H100M58 80V112M58 80H108M58 112H92"/><circle cx="112" cy="10" r="4" style="fill:var(--a)"/><circle cx="100" cy="34" r="4" style="fill:var(--t)"/><circle cx="108" cy="80" r="4" style="fill:var(--g)"/><circle cx="92" cy="112" r="4" style="fill:var(--c)"/></svg>
+                      </div>
+                    </div>
+                    <ul class="report__files">
+                      <li><b>PDF</b>report.pdf</li><li><b>NWK</b>tree.nwk</li><li><b>FAS</b>alignment.fasta</li><li><b>PNG</b>figures</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="wf__progress"><span id="wf-bar"></span></div>
+            </div>
+          </div>
+          <ol class="wf__steps">
+            <li class="wf__step is-on" data-step="0" data-title="sequences.fasta">
+              <p class="wf__n">01</p>
+              <h3>Collect the sequences</h3>
+              <p>I pull sequences from GenBank or take yours as FASTA, then check names, lengths and quality before any analysis starts.</p>
+              <p class="wf__tools">NCBI GenBank · FASTA</p>
+            </li>
+            <li class="wf__step" data-step="1" data-title="alignment.meg">
+              <p class="wf__n">02</p>
+              <h3>Align every position</h3>
+              <p>MEGA lines the sequences up so each column compares the same site. Gaps and variable sites become visible.</p>
+              <p class="wf__tools">MEGA · DAMBE</p>
+            </li>
+            <li class="wf__step" data-step="2" data-title="tree.nwk">
+              <p class="wf__n">03</p>
+              <h3>Build trees and networks</h3>
+              <p>Phylogenetic trees in MEGA or BEAST, haplotypes and diversity statistics in DnaSP, median-joining networks in Network.</p>
+              <p class="wf__tools">MEGA · BEAST · DnaSP · Network · FigTree</p>
+            </li>
+            <li class="wf__step" data-step="3" data-title="report.pdf">
+              <p class="wf__n">04</p>
+              <h3>Write the report</h3>
+              <p>Methods, figures, files and an interpretation compared with recent PubMed studies, formatted to APA and ready to cite.</p>
+              <p class="wf__tools">PubMed · APA style</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RESEARCH ============ -->
+    <section class="section section--tall" id="research" data-helix="left">
+      <div class="wrap">
+        <div class="split split--right">
+          <header class="section__head">
+            <p class="label"><span class="label__n">03</span>research</p>
+            <h2 data-decode>Research on SARS-CoV-2 and HPV16.</h2>
+          </header>
+
+          <article class="project">
+            <div class="project__text">
+              <p class="chip chip--ok">Published 2022</p>
+              <h3>SARS-CoV-2 genes, phylogeny and haplotypes</h3>
+              <p class="project__meta">Master II thesis · LBEIG laboratory, USTHB, Algiers · 2020 to 2021</p>
+              <p>An inventory of the genes identified in the coronavirus behind acute respiratory distress syndrome, analysed with bioinformatics tools. I ran every analysis: phylogenetic trees, haplotypes, molecular statistics and phylogenetic networks.</p>
+              <ul class="ticks">
+                <li>Graded 18.5/20, among the best final-year projects of 2020/2021</li>
+                <li>Published in Genetics and Biodiversity Journal (2022), with me as co-author</li>
+              </ul>
+              <a class="link-arrow" href="https://journals.uni-tlemcen.dz/GABJ/index.php/GABJ/index" target="_blank" rel="noopener">Open the journal<img src="assets/icons/ui-arrow-up-right.svg" alt="" width="16" height="16" class="ic-inline"></a>
+            </div>
+            <div class="project__viz">
+              <svg class="pipeline" viewBox="0 0 360 446" role="img" aria-label="Workflow: GenBank sequences aligned in MEGA, analysed in DnaSP, Network and BEAST, then written up as a report">
+                <g class="pipe-lines">
+                  <path d="M180 66V122"/>
+                  <path d="M180 198C180 248 62 238 62 288"/>
+                  <path d="M180 198V288"/>
+                  <path d="M180 198C180 248 298 238 298 288"/>
+                  <path d="M62 344C62 382 180 368 180 392"/>
+                  <path d="M180 344V392"/>
+                  <path d="M298 344C298 382 180 368 180 392"/>
+                </g>
+                <g class="pipe-pulses">
+                  <path d="M180 66V122" style="--d:0s"/>
+                  <path d="M180 198C180 248 62 238 62 288" style="--d:.7s"/>
+                  <path d="M180 198V288" style="--d:.9s"/>
+                  <path d="M180 198C180 248 298 238 298 288" style="--d:1.1s"/>
+                  <path d="M180 344V392" style="--d:1.8s"/>
+                </g>
+                <g class="pipe-node" style="--k:var(--t)"><rect x="112" y="8" width="136" height="58" rx="10"/><text x="180" y="33">GenBank</text><text class="sub" x="180" y="52">sequences</text></g>
+                <g class="pipe-node pipe-node--main" style="--k:var(--a)"><rect x="104" y="122" width="152" height="76" rx="12"/><text x="180" y="156">MEGA</text><text class="sub" x="180" y="176">alignment · trees</text></g>
+                <g class="pipe-node" style="--k:var(--g)"><rect x="6" y="288" width="112" height="56" rx="10"/><text x="62" y="312">DnaSP</text><text class="sub" x="62" y="330">haplotypes</text></g>
+                <g class="pipe-node" style="--k:var(--c)"><rect x="124" y="288" width="112" height="56" rx="10"/><text x="180" y="312">Network</text><text class="sub" x="180" y="330">networks</text></g>
+                <g class="pipe-node" style="--k:var(--t)"><rect x="242" y="288" width="112" height="56" rx="10"/><text x="298" y="312">BEAST</text><text class="sub" x="298" y="330">dated trees</text></g>
+                <g class="pipe-node" style="--k:var(--a)"><rect x="112" y="392" width="136" height="48" rx="10"/><text x="180" y="421">Report</text></g>
+              </svg>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project__text">
+              <p class="chip chip--wip">In preparation</p>
+              <h3>HPV16 E6 immunoinformatics</h3>
+              <p class="project__meta">Independent research · being prepared for publication</p>
+              <p>A screen of the HPV16 E6 oncoprotein for molecular mimicry and immunogenicity: BLASTp against the human proteome, B-cell epitopes with BepiPred, MHC-I and MHC-II affinity with NetMHCpan, and IEDB coverage of HLA types in North African and European populations.</p>
+            </div>
+            <div class="project__viz">
+              <div class="peptide" id="peptide" aria-hidden="true" data-seq="MHQKRTAMFQDPQERPRKLPQLCTELQTTIHDIILECVYCKQQLLRREVYDFAFRDLCIV"></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SEQUENCE LAB: real DNA tools, computed in the page ============ -->
+    <section class="section lab-section" id="lab" data-helix="dim">
+      <div class="wrap">
+        <header class="section__head section__head--wide">
+          <p class="label"><span class="label__n">04</span>sequence lab</p>
+          <h2 data-decode>A DNA toolkit that runs in this page.</h2>
+          <p class="section__lead">Paste a DNA sequence or load an example. The page runs the first checks of any analysis and writes the same steps in Python with Biopython.</p>
+        </header>
+
+        <div class="lab" id="lab-app">
+          <div class="lab__bar">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <p class="lab__name">sequence-lab</p>
+            <p class="lab__status" id="lab-status" aria-live="polite">ready</p>
+          </div>
+
+          <div class="lab__grid">
+            <div class="lab__in">
+              <label class="lab__label" for="lab-seq">DNA sequence, FASTA or plain text</label>
+              <textarea id="lab-seq" class="lab__seq" rows="5" spellcheck="false" autocomplete="off" autocapitalize="characters" aria-describedby="lab-err"></textarea>
+              <p class="lab__err" id="lab-err"></p>
+              <div class="lab__presets" role="group" aria-label="Example sequences">
+                <button type="button" class="chipbtn" data-preset="spike">SARS-CoV-2 spike, 72 nt</button>
+                <button type="button" class="chipbtn" data-preset="random">Random gene</button>
+                <button type="button" class="chipbtn" data-preset="gattaca">GATTACA</button>
+                <button type="button" class="chipbtn" data-preset="clear">Clear</button>
+              </div>
+
+              <dl class="lab__stats">
+                <div><dt>Length</dt><dd><span id="lab-len">0</span> nt</dd></div>
+                <div><dt>GC content</dt><dd><span id="lab-gc">0</span>%</dd><span class="gcbar"><i id="lab-gcbar"></i></span></div>
+                <div><dt>Molecular weight, single strand</dt><dd><span id="lab-mw">0</span> g/mol</dd></div>
+                <div><dt>Longest ORF</dt><dd id="lab-orf">none</dd></div>
+              </dl>
+
+              <div class="lab__comp" id="lab-comp" aria-label="Base composition"></div>
+            </div>
+
+            <div class="lab__out">
+              <div class="lab__row">
+                <p class="lab__k">Reverse complement <span>5′ → 3′</span></p>
+                <p class="lab__v mono" id="lab-rc"></p>
+              </div>
+              <div class="lab__row">
+                <p class="lab__k">mRNA <span>T → U</span></p>
+                <p class="lab__v mono" id="lab-rna"></p>
+              </div>
+              <div class="lab__row">
+                <p class="lab__k">Protein <span>frame +1, standard code</span></p>
+                <p class="lab__v mono lab__prot" id="lab-prot"></p>
+              </div>
+              <div class="lab__row lab__row--codons">
+                <p class="lab__k">Codons <span>first 40</span></p>
+                <div class="codonstrip" id="lab-codons"></div>
+              </div>
+            </div>
+
+            <div class="lab__code">
+              <div class="lab__codebar"><img src="assets/icons/python.svg" alt="" width="16" height="16"><span>analysis.py</span><button type="button" class="chipbtn chipbtn--sm" id="lab-copy">Copy code</button></div>
+              <pre class="code" id="lab-py" tabindex="0" aria-label="The same analysis in Python"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TOOLKIT ============ -->
+    <section class="section" id="toolkit" data-helix="dim">
+      <div class="wrap">
+        <header class="section__head section__head--wide">
+          <p class="label"><span class="label__n">05</span>toolkit</p>
+          <h2 data-decode>Bioinformatics software and databases.</h2>
+          <p class="section__lead">The programs behind my analyses, grouped by the question they answer.</p>
+        </header>
+        <div class="toolkit">
+          <div class="tgroup" style="--k:var(--a)">
+            <h3>Phylogenetics</h3>
+            <ul class="codons">
+              <li><b>MEG</b><span>MEGA</span></li>
+              <li><b>BST</b><span>BEAST</span></li>
+              <li><b>TAN</b><span>TreeAnnotator</span></li>
+              <li><b>FIG</b><span>FigTree</span></li>
+              <li><b>TRX</b><span>T-REX online</span></li>
+            </ul>
+          </div>
+          <div class="tgroup" style="--k:var(--g)">
+            <h3>Population genetics</h3>
+            <ul class="codons">
+              <li><b>DSP</b><span>DnaSP</span></li>
+              <li><b>NET</b><span>Network</span></li>
+              <li><b>DMB</b><span>DAMBE</span></li>
+              <li><b>SMP</b><span>SimPlot</span></li>
+            </ul>
+          </div>
+          <div class="tgroup" style="--k:var(--c)">
+            <h3>Immunoinformatics</h3>
+            <ul class="codons">
+              <li><b>BLP</b><span>BLASTp</span></li>
+              <li><b>BEP</b><span>BepiPred</span></li>
+              <li><b>MHC</b><span>NetMHCpan</span></li>
+              <li><b>IED</b><span>IEDB</span></li>
+            </ul>
+          </div>
+          <div class="tgroup" style="--k:var(--t)">
+            <h3>Data and writing</h3>
+            <ul class="codons">
+              <li><b>NCB</b><span>NCBI GenBank</span></li>
+              <li><b>PUB</b><span>PubMed</span></li>
+              <li><b><img src="assets/icons/python.svg" alt="" width="22" height="22"></b><span>Python</span></li>
+              <li><b>APA</b><span>APA style</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="section section--tall" id="experience" data-helix="right">
+      <div class="wrap">
+        <div class="split split--left">
+          <header class="section__head">
+            <p class="label"><span class="label__n">06</span>experience</p>
+            <h2 data-decode>Research, freelance and teaching experience.</h2>
+          </header>
+          <ol class="lane">
+            <li class="lane__item" style="--k:var(--a)">
+              <p class="lane__when">2026 · now</p>
+              <div>
+                <h3>APA formatting and editing of an Arabic PhD thesis</h3>
+                <p class="lane__where">Upwork · fixed-price contract</p>
+                <p>Formatting, proofreading, editing and referencing to APA style.</p>
+              </div>
+            </li>
+            <li class="lane__item" style="--k:var(--t)">
+              <p class="lane__when">2022 · now</p>
+              <div>
+                <h3>Bioinformatics projects for research clients</h3>
+                <p class="lane__where">Upwork · freelance</p>
+                <p>Phylogenetic and sequence analyses for researchers, each delivered with its data files and a full written report.</p>
+              </div>
+            </li>
+            <li class="lane__item" style="--k:var(--g)">
+              <p class="lane__when">2023</p>
+              <div>
+                <h3>Natural sciences teacher, substitute</h3>
+                <p class="lane__where">Lycée El Mossalaha Al Watania · Beni Tamou, Blida</p>
+                <p>Two secondary-school teaching assignments, in February and April 2023.</p>
+              </div>
+            </li>
+            <li class="lane__item" style="--k:var(--c)">
+              <p class="lane__when">2021</p>
+              <div>
+                <h3>Five-month bioinformatics training</h3>
+                <p class="lane__where">Population genetics and conservation laboratory · USTHB, Algiers</p>
+                <p>Molecular biology and phylogeny software, under the supervision of Dr. Louiza Derouiche.</p>
+              </div>
+            </li>
+            <li class="lane__item" style="--k:var(--a)">
+              <p class="lane__when">2019 · 2021</p>
+              <div>
+                <h3>Master in Genetics</h3>
+                <p class="lane__where">Saad Dahlab University Blida 1</p>
+                <p>Thesis on coronavirus genes, graded 18.5/20.</p>
+              </div>
+            </li>
+            <li class="lane__item" style="--k:var(--t)">
+              <p class="lane__when">2016 · 2019</p>
+              <div>
+                <h3>Licence in Biological Sciences, Genetics</h3>
+                <p class="lane__where">Saad Dahlab University Blida 1</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LETTERS ============ -->
+    <section class="section" id="letters" data-helix="left">
+      <div class="wrap">
+        <div class="split split--right">
+          <header class="section__head">
+            <p class="label"><span class="label__n">07</span>letters</p>
+            <h2 data-decode>Recommendations from my lecturers and clients.</h2>
+          </header>
+          <div class="quotes">
+            <figure class="quote" style="--k:var(--a)">
+              <blockquote lang="fr">« Une personnalité rigoureuse, dynamique et talentueuse. »</blockquote>
+              <p class="quote__en">A rigorous, dynamic and talented personality. The project ranked among the best final-year theses of 2020/2021.</p>
+              <figcaption>
+                <strong>Dr. Louiza Derouiche</strong>
+                <span>Associate professor (MCA, HDR), ESSAIA · thesis supervisor, LBEIG laboratory, USTHB · August 2021</span>
+              </figcaption>
+            </figure>
+            <figure class="quote" style="--k:var(--g)">
+              <blockquote lang="fr">« Très motivée dans le domaine de la recherche et de l'innovation. »</blockquote>
+              <p class="quote__en">Very motivated in research and innovation, with the potential this field requires. A serious and very diligent student.</p>
+              <figcaption>
+                <strong>Ramdane Mohamed Said</strong>
+                <span>Associate professor, Saad Dahlab University Blida 1 · former vice-dean for teaching · February 2021</span>
+              </figcaption>
+            </figure>
+            <figure class="quote quote--client" style="--k:var(--t)">
+              <p class="stars" aria-label="Rated 5.0 out of 5"><span aria-hidden="true">★★★★★</span> 5.0</p>
+              <blockquote>“Expert in her field, she is very talented and ambitious. Perfect work, clean, fast and efficient. I recommend.”</blockquote>
+              <figcaption>
+                <strong>Upwork client</strong>
+                <span>Bioinformatics project · January 2023</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ COURSES ============ -->
+    <section class="section" id="courses" data-helix="right">
+      <div class="wrap">
+        <div class="split split--left">
+          <header class="section__head">
+            <p class="label"><span class="label__n">08</span>courses</p>
+            <h2 data-decode>Courses completed since 2025.</h2>
+            <p class="section__lead">Continuing education in molecular biology, programming and scientific writing.</p>
+          </header>
+          <div class="certs">
+            <article class="cert" style="--k:var(--a)">
+              <p class="cert__org">Saylor Academy · November 2025</p>
+              <h3>BIO101: Introduction to Molecular and Cellular Biology</h3>
+              <dl class="cert__stats"><div><dt>Grade</dt><dd><span data-count="94.44" data-dec="2">94.44</span>%</dd></div><div><dt>Hours</dt><dd>35</dd></div><div><dt>Certificate</dt><dd>0323125356YB</dd></div></dl>
+            </article>
+            <article class="cert" style="--k:var(--t)">
+              <p class="cert__org">Saylor Academy · October 2025</p>
+              <h3>CS105: Introduction to Python</h3>
+              <dl class="cert__stats"><div><dt>Grade</dt><dd><span data-count="95.26" data-dec="2">95.26</span>%</dd></div><div><dt>Hours</dt><dd>36</dd></div><div><dt>Certificate</dt><dd>6374240219YB</dd></div></dl>
+            </article>
+            <article class="cert cert--list" style="--k:var(--g)">
+              <p class="cert__org">OpenLearn, The Open University · November 2025</p>
+              <ul><li>Essay and report writing skills</li><li>Inheritance of characters</li><li>Gene testing</li></ul>
+            </article>
+            <article class="cert cert--list" style="--k:var(--c)">
+              <p class="cert__org">Cursa · 2026</p>
+              <ul><li>Microbiological analysis</li><li>Cell biology</li><li>Plant biology</li><li>Complete biology course</li><li>Nutrition physiology</li></ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section contact" id="contact" data-helix="center">
+      <div class="wrap contact__grid">
+        <div class="contact__main panel">
+          <p class="label"><span class="label__n">09</span>contact</p>
+          <div class="profile">
+            <img class="profile__img" src="assets/img/avatar.webp" width="400" height="400" alt="Yasmine Benzayed" loading="lazy">
+            <div>
+              <p class="profile__name">Yasmine Benzayed</p>
+              <p class="profile__role">Bioinformatician and geneticist · Master in Genetics</p>
+              <p class="profile__meta">Algeria · remote projects through Upwork and email</p>
+            </div>
+          </div>
+          <h2 data-decode>Contact for analysis and writing projects.</h2>
+          <p class="section__lead">Send the organism, the gene or region, how many sequences you have and your deadline. I reply in English, French or Arabic.</p>
+          <div class="email">
+            <a class="email__addr" href="mailto:bzdyasmine97@gmail.com?subject=Bioinformatics%20project">bzdyasmine97@gmail.com</a>
+            <button class="btn btn--ghost btn--sm email__copy" type="button" data-copy="bzdyasmine97@gmail.com">
+              <img src="assets/icons/ui-copy.svg" alt="" width="16" height="16" class="ic-inline"><span>Copy address</span>
+            </button>
+            <span class="sr-only" id="copy-status" aria-live="polite"></span>
+          </div>
+          <a class="btn btn--primary" href="mailto:bzdyasmine97@gmail.com?subject=Bioinformatics%20project">
+            <img src="assets/icons/ui-mail.svg" alt="" width="18" height="18" class="ic-inline ic-dark">Email me
+          </a>
+        </div>
+
+        <div class="contact__side panel">
+          <h3 class="contact__h">Profiles</h3>
+          <!--
+            Social links. Put each profile URL in the href (replace the data-pending attribute when you do).
+            Example: <a class="social" href="https://www.linkedin.com/in/your-handle" ...>
+          -->
+          <ul class="socials">
+            <li><a class="social" data-social="linkedin" href="https://www.linkedin.com/" target="_blank" rel="noopener me" data-pending><img src="assets/icons/linkedin.svg" alt="" width="28" height="28"><span class="social__name">LinkedIn</span><span class="social__what">Career and research</span><img class="social__go ic-inline" src="assets/icons/ui-arrow-up-right.svg" alt="" width="16" height="16"></a></li>
+            <li><a class="social" data-social="upwork" href="https://www.upwork.com/freelancers/~014ba4ed851fb90341" target="_blank" rel="noopener me"><img src="assets/icons/upwork.svg" alt="" width="28" height="28"><span class="social__name">Upwork</span><span class="social__what">Hire for a project</span><img class="social__go ic-inline" src="assets/icons/ui-arrow-up-right.svg" alt="" width="16" height="16"></a></li>
+            <li><a class="social" data-social="github" href="https://github.com/" target="_blank" rel="noopener me" data-pending><img class="ic-ink" src="assets/icons/github.svg" alt="" width="28" height="28"><span class="social__name">GitHub</span><span class="social__what">Scripts and code</span><img class="social__go ic-inline" src="assets/icons/ui-arrow-up-right.svg" alt="" width="16" height="16"></a></li>
+            <li><a class="social" data-social="facebook" href="https://www.facebook.com/sali.habich" target="_blank" rel="noopener me"><img src="assets/icons/facebook.svg" alt="" width="28" height="28"><span class="social__name">Facebook</span><span class="social__what">News and posts</span><img class="social__go ic-inline" src="assets/icons/ui-arrow-up-right.svg" alt="" width="16" height="16"></a></li>
+            <li><a class="social" data-social="instagram" href="https://www.instagram.com/" target="_blank" rel="noopener me" data-pending><img class="ic-ink" src="assets/icons/instagram.svg" alt="" width="28" height="28"><span class="social__name">Instagram</span><span class="social__what">Science in pictures</span><img class="social__go ic-inline" src="assets/icons/ui-arrow-up-right.svg" alt="" width="16" height="16"></a></li>
+          </ul>
+          <p class="langs"><span>English</span><span>Français</span><span lang="ar">العربية</span></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__row">
+      <p>© <span id="year">2026</span> Yasmine Benzayed · Bioinformatics and genetics</p>
+      <p class="footer__links">
+        <button type="button" class="linkish" id="motion-toggle" aria-pressed="false">Pause motion</button>
+        <a href="#top">Back to top</a>
+      </p>
+      <p class="footer__legal">Product names and logos are trademarks of their owners.</p>
+    </div>
+  </footer>
+
+  <div class="readout" aria-hidden="true">
+    <span class="readout__end">5′</span>
+    <span class="readout__track"><span class="readout__bar" id="readout-bar"></span></span>
+    <span class="readout__end">3′</span>
+    <span class="readout__sec" id="readout-sec">00 · top</span>
+  </div>
+
+  <noscript><style>.m-enter{opacity:1!important;transform:none!important}</style></noscript>
+</body>
+</html>
