@@ -9,8 +9,8 @@ node_modules/
 .DS_Store
 Thumbs.db
 
-# Marketing video, covers and the scripts that make them: kept locally, not part of the website
-video/
+# Working folders of the video tools (the finished videos in video/ are committed)
+video/tools/__pycache__/
 
 # Local code graph (graphify)
 graphify-out/
