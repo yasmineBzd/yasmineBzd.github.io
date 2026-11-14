@@ -93,7 +93,7 @@
   var bar = document.getElementById('readout-bar');
   var sec = document.getElementById('readout-sec');
   var readout = document.querySelector('.readout');
-  var names = { top: 'top', services: 'services', research: 'research', toolkit: 'toolkit', experience: 'experience', letters: 'letters', courses: 'courses', contact: 'contact' };
+  var names = { top: 'top', services: 'services', research: 'research', toolkit: 'toolkit', experience: 'experience', letters: 'letters', courses: 'courses', marketing: 'marketing', contact: 'contact' };
   var lastId = '';
   var ticking = false;
   function updateReadout() {
