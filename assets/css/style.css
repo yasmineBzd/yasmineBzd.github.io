@@ -302,29 +302,8 @@ h3 { font-size: 19px; line-height: 1.3; letter-spacing: -0.015em; font-weight: 6
   padding-block: calc(var(--nav-h) + 40px) 120px;
 }
 .hero__grid { width: 100%; position: relative; z-index: 2; }
-.hero__copy { max-width: 600px; }
+.hero__copy { max-width: 660px; }
 
-/* the portrait: a cut-out standing in front of the helix, its lower edge melting into the page */
-.hero__portrait {
-  /* leaves a lane between the text and the portrait for the 3D helix */
-  --pw: clamp(300px, calc(100vw - 600px - 2 * var(--gutter) - 220px), 540px);
-  position: absolute; z-index: 1; bottom: 0; margin: 0;
-  right: calc(max(0px, (100vw - var(--wrap) - 2 * var(--gutter)) / 2) + var(--gutter));
-  width: min(var(--pw), calc((100vh - var(--nav-h) - 12px) * 900 / 1029));
-  pointer-events: none;
-}
-.hero__portrait::before {
-  content: ""; position: absolute; z-index: -1; left: 6%; right: 6%; top: -2%; height: 64%; border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(79, 227, 193, 0.26), rgba(90, 169, 255, 0.12) 55%, transparent 100%);
-  filter: blur(28px);
-}
-.hero__portrait img {
-  display: block; width: 100%; height: auto;
-  -webkit-mask-image: linear-gradient(to bottom, #000 76%, rgba(0, 0, 0, 0.6) 89%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 76%, rgba(0, 0, 0, 0.6) 89%, transparent 100%);
-  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.55));
-}
-.js .hero__portrait.m-enter { transform: translateY(40px); filter: blur(10px); }
 .kicker {
   display: inline-flex; align-items: center; gap: 12px;
   padding: 7px 14px 7px 10px; border-radius: 999px;
@@ -577,14 +556,9 @@ h1 { margin-top: 28px; }
 .contact__side { grid-column: 8 / span 5; }
 .panel { border-radius: var(--r-lg); padding: clamp(24px, 3vw, 40px); }
 .contact__main .section__lead { margin-bottom: 30px; }
-.profile { display: flex; align-items: center; gap: 18px; margin: 4px 0 26px; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
-.profile__img {
   flex: none; width: 76px; height: 76px; border-radius: 50%; object-fit: cover;
   box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--a), 0 10px 30px -8px rgba(79, 227, 193, 0.6);
 }
-.profile__name { font-size: 19px; font-weight: 600; letter-spacing: -0.015em; }
-.profile__role { font-size: 14.5px; color: var(--ink-2); }
-.profile__meta { margin-top: 2px; font-size: 13px; color: var(--muted); }
 .email { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-bottom: 26px; }
 .email__addr {
   font-family: var(--mono); font-size: clamp(19px, 2vw, 26px); letter-spacing: -0.02em; text-decoration: none;
@@ -642,9 +616,8 @@ h1 { margin-top: 28px; }
 @media (max-width: 1180px) {
   .nav__links a { padding: 10px 7px; font-size: 14px; min-width: 0; }
   .nav__row { gap: 18px; }
-  .hero__copy { max-width: 520px; }
+  .hero__copy { max-width: 580px; }
   .h1__name { font-size: clamp(56px, 7.4vw, 96px); }
-  .hero__portrait { --pw: clamp(280px, calc(100vw - 520px - 2 * var(--gutter) - 150px), 460px); }
   .project { gap: 20px; padding: 22px; }
   .toolkit { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .contact__main { grid-column: 1 / span 7; }
@@ -672,9 +645,6 @@ h1 { margin-top: 28px; }
 
 @media (max-width: 899px) {
   body { font-size: 16px; }
-  .hero { padding-top: calc(var(--nav-h) + 12px); }
-  .hero__portrait { position: relative; right: auto; bottom: auto; width: min(76vw, 380px); margin: 0 auto -36px; }
-  .hero__portrait img { -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 98%); mask-image: linear-gradient(to bottom, #000 70%, transparent 98%); }
   .project { grid-template-columns: 1fr; }
   .stage-shade {
     background:

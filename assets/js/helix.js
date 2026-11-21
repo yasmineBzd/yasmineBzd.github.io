@@ -340,20 +340,8 @@ function init() {
 
   /* the hero helix stands in the space right of the hero copy, never under it */
   const heroCopy = document.querySelector('.hero__copy');
-  const heroPortrait = document.querySelector('.hero__portrait');
   function fitHero() {
     if (!heroCopy || W < 900) return;
-    if (heroPortrait && heroPortrait.offsetWidth) {
-      const p = heroPortrait.getBoundingClientRect();
-      // the helix stands in the lane between the text and the portrait, its right side passing behind her
-      const c = heroCopy.getBoundingClientRect();
-      const pxu = H / visH; // pixels per world unit at the helix plane
-      const gap = Math.max(0, p.left - c.right);
-      MODES.hero.x = Math.max((c.right + p.left) / 2, p.left - 60) / W;
-      MODES.hero.s = Math.max(0.72, Math.min(1.05, (gap + 140) / (2.7 * pxu)));
-      MODES.hero.tilt = 0.24; // leans so its lower end passes behind her, away from the text
-      return;
-    }
     const right = heroCopy.getBoundingClientRect().right;
     const pxu = H / visH;
     const full = 3.1 * pxu;

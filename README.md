@@ -17,9 +17,8 @@ assets/js/workflow.js the "process" section: sticky window with FASTA, alignment
 assets/js/lab.js      the sequence lab: GC, composition, molecular weight, reverse complement,
                       mRNA, translation, longest ORF, and the same steps written in Biopython
 assets/vendor/        three.js r170 (MIT) and its bloom post-processing files
-assets/img/           the portrait (cut-out, two sizes) and the round avatar
 assets/icons/         brand and interface icons (CC0 / ISC, see icons-credits.json)
-assets/share.jpg      1200x630 link preview image (the hero with her portrait)
+assets/share.jpg      1200x630 link preview image
 ```
 
 ## Preview locally
