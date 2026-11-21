@@ -132,19 +132,8 @@ def main():
 
             # pointer script, built once the hero helix has settled
             if mouse_keys is None and t >= 4.0:
-                info = page.evaluate("""() => { const h = window.__helix; const p = document.querySelector('.hero__portrait').getBoundingClientRect();
-                  return { x: h.x, sx: Array.from(h.sx), sy: Array.from(h.sy), p: [p.left, p.top, p.right, p.bottom] }; }""")
-                L, T, Rr, B = info['p']
-                w = Rr - L
-                hx = info['x']
-                # only the parts of the helix that show around the portrait
-                vis = sorted([(x, y) for x, y in zip(info['sx'], info['sy'])
-                              if 110 < y < 660 and 40 < x < VW - 40 and (x > Rr - 0.2 * w or y < T + 40 or x < L + 0.14 * w)], key=lambda q: q[1])
-                print('visible helix points', len(vis), vis[:1], vis[-1:], flush=True)
-                if len(vis) >= 4:
-                    pk = [vis[int(k * (len(vis) - 1) / 3)] for k in range(4)]
-                else:
-                    pk = [(hx + 30, 250), (hx - 10, 420), (hx + 20, 600), (hx, 430)]
+                hx = page.evaluate('window.__helix ? window.__helix.x : innerWidth * 0.75')
+                pk = [(hx + 30, 250), (hx - 10, 420), (hx + 20, 600), (hx, 430)]
                 mouse_keys = [
                     (0, (VW - 6, 300)), (4.4, (VW - 6, 300)), (5.2, pk[0]), (6.3, pk[1]), (7.3, pk[2]), (8.2, pk[1]),
                     (8.9, pk[0]), (9.4, pk[2]), (10.2, (pk[2][0] - 40, pk[2][1] + 40)), (11.6, (430, 560)), (13.0, (520, 640)),

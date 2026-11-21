@@ -3,13 +3,11 @@ import base64, json, os, sys
 from playwright.sync_api import sync_playwright
 
 OUT = sys.argv[1]
-AVATAR = 'data:image/webp;base64,' + base64.b64encode(open(sys.argv[2], 'rb').read()).decode()
 
 
 def avatar(px, ring=3):
-    return (f'<img src="{AVATAR}" width="{px}" height="{px}" style="display:block;width:{px}px;height:{px}px;border-radius:50%;'
-            f'box-shadow:0 0 0 {ring + 2}px #05090b,0 0 0 {ring * 2 + 2}px #4fe3c1,0 20px 60px -10px rgba(79,227,193,.6)">')
-os.makedirs(OUT, exist_ok=True)
+    return MARK.format(s=px)
+
 
 # on-screen text: one idea per scene, specific, no hype words (create-viral-content rules)
 CAPTIONS = [
